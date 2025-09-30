@@ -264,12 +264,12 @@ function App() {
 
   // --- RENDER LOGIC ---
 
-  const renderContent = () => {
+   const renderContent = () => {
     switch (view) {
       case 'chat':
         return (
-          <Content style={{ padding: '24px', display: 'flex', justifyContent: 'center' }}>
-            <div style={{ width: '800px', display: 'flex', flexDirection: 'column', height: 'calc(100vh - 112px)' }}>
+          <Content className="responsive-content" style={{ padding: '24px', display: 'flex', justifyContent: 'center' }}>
+            <div className="responsive-container" style={{ width: '800px', display: 'flex', flexDirection: 'column', height: 'calc(100vh - 112px)' }}>
               {!interviewEnded && !detailToCollect && ( <div style={{ textAlign: 'center', marginBottom: '16px' }}><Typography.Title level={2}>Time Remaining: {timer}s</Typography.Title></div> )}
               <div style={{ flexGrow: 1, border: '1px solid #d9d9d9', borderRadius: '8px', padding: '16px', marginBottom: '16px', overflowY: 'auto', backgroundColor: 'white' }}>
                 {messages.map((msg, index) => ( <div key={index} style={{ marginBottom: '12px', textAlign: msg.sender === 'user' ? 'right' : 'left' }}><div style={{ display: 'inline-block', padding: '8px 12px', borderRadius: '12px', backgroundColor: msg.sender === 'user' ? '#1890ff' : '#f0f0f0', color: msg.sender === 'user' ? 'white' : 'black', maxWidth: '70%' }}>{msg.text}</div></div> ))}
@@ -280,10 +280,16 @@ function App() {
         );
       case 'dashboard':
         return (
-          <Content style={{ padding: '50px' }}>
-            <div style={{ background: 'white', padding: 24, borderRadius: 8 }}>
+          <Content className="responsive-content" style={{ padding: '50px' }}>
+            <div style={{ background: 'white', padding: 24, borderRadius: 8, overflowX: 'auto' }}>
               <Title level={2} style={{ marginBottom: 24 }}>Interviewer Dashboard</Title>
-              <Input placeholder="Search by name or email..." value={searchText} onChange={(e) => setSearchText(e.target.value)} style={{ marginBottom: 24, width: '300px' }} />
+              <Input
+                className="responsive-search"
+                placeholder="Search by name or email..."
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                style={{ marginBottom: 24, width: '300px' }}
+              />
               <Table
                 columns={dashboardColumns}
                 dataSource={filteredInterviews}
@@ -295,9 +301,9 @@ function App() {
           </Content>
         );
       case 'detail':
-        if (!selectedInterview) { return ( <Content style={{ padding: '50px' }}><p>No interview selected. <Button type="link" onClick={() => setView('dashboard')}>Go back to dashboard</Button></p></Content> ); }
+        if (!selectedInterview) { return ( <Content className="responsive-content" style={{ padding: '50px' }}><p>No interview selected. <Button type="link" onClick={() => setView('dashboard')}>Go back to dashboard</Button></p></Content> ); }
         return (
-          <Content style={{ padding: '50px' }}>
+          <Content className="responsive-content" style={{ padding: '50px' }}>
             <div style={{ background: 'white', padding: 24, borderRadius: 8 }}>
               <Button onClick={() => setView('dashboard')} style={{ marginBottom: 24 }}>&larr; Back to Dashboard</Button>
               <Title level={3}>Interview with: {selectedInterview.candidateDetails.name || 'N/A'}</Title>
@@ -315,11 +321,11 @@ function App() {
       case 'home':
       default:
         return (
-          <Content style={{ padding: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Content className="responsive-content" style={{ padding: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ textAlign: 'center', maxWidth: '800px' }}>
               <Title level={1} style={{ marginBottom: 10 }}>Welcome to Crisp AI</Title>
               <Typography.Text style={{ fontSize: '18px', color: '#555', marginBottom: 50, display: 'block' }}>Your intelligent assistant for conducting and managing technical interviews.</Typography.Text>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginTop: 40 }}>
+              <div className="home-cards-container" style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginTop: 40 }}>
                 <Card className="premium-card" style={{ width: 350, textAlign: 'center' }} actions={[<Button type="primary" size="large" shape="round" onClick={handleStartInterview} disabled={!file}>Start Interview</Button>]}>
                   <Card.Meta avatar={<MessageOutlined style={{ fontSize: '48px', color: '#1890ff' }} />} title={<Title level={3}>For Interviewees</Title>} description="Upload your resume below to begin your automated screening interview." />
                   <input type="file" ref={fileInputRef} onChange={handleFileChange} style={{ display: 'none' }} accept=".pdf,.doc,.docx" />
@@ -328,7 +334,7 @@ function App() {
                   </div>
                 </Card>
                 <Card className="premium-card" style={{ width: 350, textAlign: 'center' }} actions={[<Button type="primary" size="large" shape="round" onClick={() => setView('dashboard')}>View Dashboard</Button>]}>
-                  <Card.Meta avatar={<DashboardOutlined style={{ fontSize: '48px', color: '#52c41a' }} />} title={<Title level={3}>For Interviewers</Title>} description="Access candidate results, review chat histories, and see AI-powered summaries." />
+                  <Card.Meta avatar={<DashboardOutlined style={{ fontSize: '48px', color: '#52c_41a' }} />} title={<Title level={3}>For Interviewers</Title>} description="Access candidate results, review chat histories, and see AI-powered summaries." />
                 </Card>
               </div>
             </div>
