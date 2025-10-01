@@ -3,7 +3,7 @@ Crisp AI is a sophisticated, AI-powered web application designed to automate the
 Note: This project fulfills all requirements of the Swipe Internship Assignment. It was built with a focus on robustness, user experience, and professional design. While a full AI integration for dynamic question generation and summarization was successfully built and tested, this final version uses a stable, local interview flow to guarantee a flawless and reliable experience for evaluation.
 
 Live Demo
-InsertYourLiveVercel/NetlifyURLHere
+https://crisp-interview-app.vercel.app/
 Key Features
 The application is split into two primary, synchronized views: the Interviewee chat and the Interviewer dashboard.
 
@@ -69,7 +69,7 @@ To run this project locally on your machine, please follow these steps:
 
 1. Clone the Repository
 
-git clone [Your GitHub Repository URL]
+git clone https://github.com/ankit0767/crisp-interview-app
 cd crisp-interview-app
 
 
